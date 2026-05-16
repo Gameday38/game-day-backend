@@ -35,4 +35,4 @@ app.post('/api/capture-order', async function(req, res) {
     res.status(500).json({ error: error.message });
   }
 });
-app.listen(PORT, '0.0.0.0', function() { console.log('Server running on port ' +
+app.listen(PORT, '0.0.0.0', function() { console.log('Server running on port ' + PORT); });
