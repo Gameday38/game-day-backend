@@ -11,8 +11,9 @@ const PORT = process.env.PORT || 3001;
 
 app.use(cors({
   origin: ['https://gamedaypickup.com', 'https://www.gamedaypickup.com'],
-  allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowHeaders: ['Content-Type', 'x-auth-token'],
+methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+allowedHeaders: ['Content-Type', 'x-auth-token'],
+
   credentials: true
 }));
 app.use(express.json());
