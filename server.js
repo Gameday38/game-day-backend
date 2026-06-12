@@ -18,7 +18,11 @@ allowedHeaders: ['Content-Type', 'x-auth-token'],
 }));
 app.use(express.json());
 
-const db = mysql.createPool({ uri: process.env.DATABASE_URL });
+const db = mysql.createPool({
+  uri: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
+});
+
 
 function hashPassword(p) {
   return crypto.createHash('sha256').update(p).digest('hex');
