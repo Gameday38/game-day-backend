@@ -84,16 +84,8 @@ const gameRouter = router({
   }),
 
   create: protectedProcedure
-    .input(z.object({
-      title: z.string(),
-      sport: z.string(),
-      location: z.string(),
-      lat: z.number(),
-      lng: z.number(),
-      date: z.string(),
-      maxPlayers: z.number(),
-      description: z.string().optional()
-    }))
+   .input(z.object({ name: z.string(), email: z.string().email(), password: z.string(), avatar_color: z.string().optional() }).passthrough())
+
     .mutation(async ({ input, ctx }) => {
       const [result] = await db.query(
         'INSERT INTO games (title, sport, location, lat, lng, date, max_players, description, creator_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
