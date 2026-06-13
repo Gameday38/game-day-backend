@@ -48,7 +48,19 @@ const protectedProcedure = t.procedure.use(({ ctx, next }) => {
 
 const authRouter = router({
   signup: publicProcedure
-    .input(z.object({ name: z.string(), email: z.string().email(), password: z.string(), avatar_color: z.string().optional() }))
+.input(z.object({
+  name: z.string(),
+  email: z.string().email(),
+  password: z.string(),
+  avatar: z.string().optional(),
+  avatar_color: z.string().optional(),
+  age: z.number().optional(),
+  birthdate: z.string().optional(),
+  gender: z.string().optional(),
+  favoriteSports: z.array(z.string()).optional(),
+  allowChat: z.boolean().optional()
+}))
+
     .mutation(async ({ input, ctx }) => {
       const [existing] = await db.query('SELECT id FROM users WHERE email = ?', [input.email]);
       if (existing.length) throw new TRPCError({ code: 'BAD_REQUEST', message: 'Email already exists' });
